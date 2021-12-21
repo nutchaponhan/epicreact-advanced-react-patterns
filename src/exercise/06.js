@@ -54,11 +54,11 @@ function useToggle({
   // 3. Then call `onChange` with our "suggested changes" and the action.
 
   function dispatchWithOnChange(action){
-    if (onIsControlled) {
-      onChange(reducer({...state, on}, action), action)
-    } else {
+    if (!onIsControlled) {
       dispatch(action)
+      
     }
+    onChange?.(reducer({...state, on}, action), action)
   }
 
   // 🦉 "Suggested changes" refers to: the changes we would make if we were
